@@ -51,11 +51,11 @@ jobs:
   validate-tag-to-deploy-default-branch:
     runs-on: [ubuntu-20.04]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
 
       - name: Check if tag is reachable by main
         # You may also reference just the major or major.minor version
-        uses: im-open/is-tag-reachable-from-default-branch@v1.1.4
+        uses: im-open/is-tag-reachable-from-default-branch@v2.0.0
         with:
           tag: 'latest'
 
@@ -63,10 +63,10 @@ jobs:
   validate-tag-to-deploy-from-non-default-workflow-branch:
     runs-on: [ubuntu-20.04]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
 
       - name: Check if tag is reachable by main
-        uses: im-open/is-tag-reachable-from-default-branch@v1.1.4
+        uses: im-open/is-tag-reachable-from-default-branch@v2.0.0
         with:
           tag: 'latest'
           ref: ${{ github.ref }}
@@ -76,13 +76,13 @@ jobs:
   validate-tag-to-deploy-advanced:
     runs-on: [ubuntu-20.04]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
         with:
           ref: "v2.0.12"
 
       - name: Check if tag is reachable by master
         id: tag-check
-        uses: im-open/is-tag-reachable-from-default-branch@v1.1.4
+        uses: im-open/is-tag-reachable-from-default-branch@v2.0.0
         with:
           tag: 'latest'                 # The tag to check
           error-if-not-reachable: false # Don't throw an error if the tag is not reachable
@@ -99,7 +99,7 @@ jobs:
     needs: [validate-tag-to-deploy-advanced]
     runs-on: [ubuntu-20.04]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
         with:
           ref: 'v2.0.12'
 
